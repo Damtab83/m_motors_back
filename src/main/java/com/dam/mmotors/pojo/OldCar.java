@@ -1,9 +1,7 @@
 package com.dam.mmotors.pojo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +16,9 @@ public class OldCar {
 
     private String brand;
     private Integer price;
+
+    @OneToOne(mappedBy = "takeOldCar")
+    @JsonBackReference
+    private BuyCar buyCar;
+
 }

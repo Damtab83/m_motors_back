@@ -14,7 +14,7 @@ public class RentalCar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long rental_id;
 
     private Integer price;
     private Boolean rentalSubscription;

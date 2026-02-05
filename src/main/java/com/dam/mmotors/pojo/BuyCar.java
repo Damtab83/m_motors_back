@@ -1,5 +1,6 @@
 package com.dam.mmotors.pojo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class BuyCar {
 
     @OneToOne(optional = true)
     @JoinColumn(name = "oldCar_id")
+    @JsonManagedReference
     private OldCar takeOldCar;
 
     public boolean hasTradeIn() {
