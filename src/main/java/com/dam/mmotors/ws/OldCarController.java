@@ -22,7 +22,7 @@ public class OldCarController {
         return ResponseEntity.status(HttpStatus.OK).body(myListOldCar);
     }
     @GetMapping("{id}")
-    public ResponseEntity<OldCar> getOldCarById(Long id) {
+    public ResponseEntity<OldCar> getOldCarById(@PathVariable Long id) {
         OldCar myOldCar = oldCarService.getOldCarById(id);
         return myOldCar == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() :
                 ResponseEntity.status(HttpStatus.OK).body(myOldCar);
