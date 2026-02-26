@@ -14,6 +14,13 @@ public class BuyCar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long buyCar_id;
 
+    public Integer getPrice() {
+        if(hasTradeIn() == true) {
+            price = price - takeOldCar.getPrice();
+        }
+        return price;
+    }
+
     private Integer price;
 
     @OneToOne(optional = true)

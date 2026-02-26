@@ -44,4 +44,16 @@ public class Car {
     @OneToOne(optional = true)
     @JoinColumn(name = "testDriving_id")
     private TestDriving testing;
+
+    @Transient
+    public Integer getPrice() {
+        if (buy != null) {
+            return buy.getPrice();
+        }
+        if (rental != null) {
+            return rental.getPrice();
+        }
+        return null;
+    }
+
 }
