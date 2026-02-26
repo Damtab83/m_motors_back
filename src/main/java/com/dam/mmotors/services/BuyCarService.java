@@ -29,12 +29,13 @@ public class BuyCarService {
         return toDelete;
     }
 
-    public void updateBuyCar(Long id, BuyCar newBuyCar) {
+    public BuyCar updateBuyCar(Long id, BuyCar newBuyCar) {
         BuyCar oldBuyCar = this.getBuyCarById(id);
         if(oldBuyCar != null) {
             oldBuyCar.setPrice(newBuyCar.getPrice());
             oldBuyCar.setTakeOldCar(newBuyCar.getTakeOldCar());
-            buyCarRepository.save(oldBuyCar);
+            return buyCarRepository.save(oldBuyCar);
         }
+        return oldBuyCar;
     }
 }

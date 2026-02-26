@@ -25,12 +25,13 @@ public class TestDrivingService {
         return toDelete;
     }
 
-    public void updateTestDriving(Long id, TestDriving newTestDriving) {
+    public TestDriving updateTestDriving(Long id, TestDriving newTestDriving) {
         TestDriving oldTestDriving = this.getTestDrivingById(id);
         if(oldTestDriving != null) {
             oldTestDriving.setTestDate(newTestDriving.getTestDate());
             oldTestDriving.setConfirmed(newTestDriving.getConfirmed());
-            testDrivingRepository.save(oldTestDriving);
+            return testDrivingRepository.save(oldTestDriving);
         }
+        return oldTestDriving;
     }
 }

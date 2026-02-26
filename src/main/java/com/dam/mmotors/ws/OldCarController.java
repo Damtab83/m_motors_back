@@ -23,9 +23,9 @@ public class OldCarController {
     }
     @GetMapping("{id}")
     public ResponseEntity<OldCar> getOldCarById(@PathVariable Long id) {
-        OldCar myOldCar = oldCarService.getOldCarById(id);
-        return myOldCar == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() :
-                ResponseEntity.status(HttpStatus.OK).body(myOldCar);
+        return oldCarService.getOldCarById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping

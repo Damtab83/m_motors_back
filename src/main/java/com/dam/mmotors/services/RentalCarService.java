@@ -30,12 +30,13 @@ public class RentalCarService {
         return toDelete;
     }
 
-    public void updateRentalCar(Long id, RentalCar newRentalCar) {
+    public RentalCar updateRentalCar(Long id, RentalCar newRentalCar) {
         RentalCar oldRentalCar = this.getRentalCarById(id);
         if(oldRentalCar != null) {
             oldRentalCar.setPrice(newRentalCar.getPrice());
             oldRentalCar.setRentalSubscription(newRentalCar.getRentalSubscription());
-            rentalCarRepository.save(oldRentalCar);
+            return rentalCarRepository.save(oldRentalCar);
         }
+        return oldRentalCar;
     }
 }

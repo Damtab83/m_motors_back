@@ -6,7 +6,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -15,11 +19,17 @@ public class OldCarService {
     @Autowired
     private OldCarRepository oldCarRepository;
 
-    public List<OldCar> getAllOldCars() {return oldCarRepository.findAll();}
+    public List<OldCar> getAllOldCars() {
+        return oldCarRepository.findAll();
+    }
 
-    public OldCar getOldCarById(Long id) { return oldCarRepository.findById(id).orElse(null);}
+    public Optional<OldCar> getOldCarById(Long id) {
+        return oldCarRepository.findById(id);
+    }
 
-    public void createOldCar(OldCar myOldCar) { oldCarRepository.save(myOldCar);}
+    public void createOldCar(OldCar myOldCar) {
+        oldCarRepository.save(myOldCar);
+    }
 
     public Boolean deleteOldCarById(Long id) {
         Boolean toDelete = oldCarRepository.existsById(id);
@@ -29,12 +39,14 @@ public class OldCarService {
         return toDelete;
     }
 
-    public void updateOldCar(Long id, OldCar newOldCar) {
-        OldCar oldCarExisting = this.getOldCarById(id);
-        if(oldCarExisting != null) {
+    public OldCar updateOldCar(Long id, OldCar newOldCar) {
+        OldCar oldCarExisting = this.getOldCarById(id)
+                .orElseThrow(()-> new RuntimeException("OldCar not found"));
+        if (oldCarExisting != null) {
             oldCarExisting.setBrand(newOldCar.getBrand());
             oldCarExisting.setPrice(newOldCar.getPrice());
-            oldCarRepository.save(oldCarExisting);
+            return oldCarRepository.save(oldCarExisting);
         }
+        return oldCarExisting;
     }
 }

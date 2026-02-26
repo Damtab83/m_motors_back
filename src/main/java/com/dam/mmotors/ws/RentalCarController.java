@@ -18,7 +18,7 @@ public class RentalCarController {
     private RentalCarService rentalCarService;
 
     @GetMapping
-    public ResponseEntity<Object> getAllRentalCars() {
+    public ResponseEntity<Object> getAllRentalCar() {
         List<RentalCar> myListRentalCar = rentalCarService.getAllRentalCar();
         return ResponseEntity.status(HttpStatus.OK).body(myListRentalCar);
     }

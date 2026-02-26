@@ -29,12 +29,13 @@ public class UserService {
         return toDelete;
     }
 
-    public void updateUser(Long id, User newUser) {
+    public User updateUser(Long id, User newUser) {
         User oldUser = this.getuserById(id);
         if(oldUser != null) {
             oldUser.setEmail(newUser.getEmail());
             oldUser.setPassword(newUser.getPassword());
-            userRepository.save(oldUser);
+            return userRepository.save(oldUser);
         }
+        return oldUser;
     }
 }

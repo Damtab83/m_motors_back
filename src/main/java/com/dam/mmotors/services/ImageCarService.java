@@ -29,11 +29,13 @@ public class ImageCarService {
         return toDelete;
     }
 
-    public void updateImageCar(long id, ImageCar newImageCar) {
+    public ImageCar updateImageCar(long id, ImageCar newImageCar) {
         ImageCar oldImageCar = this.getImageCarById(id);
         if(oldImageCar != null) {
             oldImageCar.setName(newImageCar.getName());
             oldImageCar.setSize(newImageCar.getSize());
+            return imageCarRepository.save(oldImageCar);
         }
+        return oldImageCar;
     }
 }

@@ -21,7 +21,7 @@ public class BuyCar {
     @JsonManagedReference
     private OldCar takeOldCar;
 
-    public boolean hasTradeIn() {
+    public Boolean hasTradeIn() {
         return takeOldCar != null;
     }
 }

@@ -1,4 +1,4 @@
-package com.dam.mmotors;
+package com.dam.mmotors.services;
 
 import com.dam.mmotors.pojo.Car;
 import org.junit.jupiter.api.Test;
