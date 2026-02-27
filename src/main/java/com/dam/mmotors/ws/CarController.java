@@ -18,7 +18,7 @@ public class CarController {
 
     @GetMapping
     public ResponseEntity<Object> getAllCars() {
-        List<Car> myListCars = carService.getAllCar();
+        List<Car> myListCars = carService.getAllCars();
         return myListCars == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() :
                 ResponseEntity.status(HttpStatus.OK).body(myListCars);
     }
@@ -26,7 +26,11 @@ public class CarController {
     @GetMapping("{id}")
     public ResponseEntity<Object> getCarById(@PathVariable Long id) {
         Car myCar = carService.getCarById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+
+        if(myCar == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(myCar);
     }
 
     @PostMapping

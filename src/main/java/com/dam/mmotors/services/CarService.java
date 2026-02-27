@@ -15,7 +15,7 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    public List<Car> getAllCar() {return carRepository.findAll();}
+    public List<Car> getAllCars() {return carRepository.findAll();}
 
     public Car getCarById(Long id) {return carRepository.findById(id).orElse(null);}
 
@@ -31,6 +31,9 @@ public class CarService {
 
     public Car updateCar(Long id, Car newCar) {
         Car oldCar = this.getCarById(id);
+        if (oldCar == null) {
+            throw new RuntimeException("Car not found");
+        }
         if(oldCar != null) {
             oldCar.setBrand(newCar.getBrand());
             oldCar.setModel(newCar.getModel());
