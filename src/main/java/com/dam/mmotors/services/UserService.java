@@ -17,7 +17,7 @@ public class UserService {
 
     public List<User> getAllUsers() { return userRepository.findAll();}
 
-    public User getuserById(Long id) { return userRepository.findById(id).orElse(null);}
+    public User getUserById(Long id) { return userRepository.findById(id).orElse(null);}
 
     public void createUser(User myUser) { userRepository.save(myUser);}
 
@@ -30,7 +30,10 @@ public class UserService {
     }
 
     public User updateUser(Long id, User newUser) {
-        User oldUser = this.getuserById(id);
+        User oldUser = this.getUserById(id);
+        if (oldUser == null) {
+            throw new RuntimeException("User not found");
+        }
         if(oldUser != null) {
             oldUser.setEmail(newUser.getEmail());
             oldUser.setPassword(newUser.getPassword());

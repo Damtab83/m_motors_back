@@ -113,4 +113,5 @@ public class CarServiceTest {
         );
 
         assertEquals("Car not found", exception.getMessage());
-    }}
+    }
+}

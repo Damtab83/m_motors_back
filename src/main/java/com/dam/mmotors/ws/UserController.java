@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping("{id}")
     public ResponseEntity<Object> getUserById(@PathVariable Long id) {
-        User myUser = userService.getuserById(id);
+        User myUser = userService.getUserById(id);
         return myUser == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() :
                 ResponseEntity.status(HttpStatus.OK).body(myUser);
     }
@@ -41,4 +41,9 @@ public class UserController {
         return toDelete ? ResponseEntity.status(HttpStatus.OK).build() :
                 ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Object> updateUser(@PathVariable Long id, @RequestBody User newUser) {
+        userService.updateUser(id, newUser);
+        return ResponseEntity.status(HttpStatus.OK).build();}
 }
