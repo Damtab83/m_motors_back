@@ -1,5 +1,6 @@
 package com.dam.mmotors.pojo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,11 @@ public class Car {
     private String motorization;
     private Integer kilometer;
     private Boolean funding;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User customer;
 
     @OneToOne(optional = true)
     @JoinColumn(name = "buyCar_id")
@@ -44,4 +50,15 @@ public class Car {
     @OneToOne(optional = true)
     @JoinColumn(name = "testDriving_id")
     private TestDriving testing;
+
+    @Transient
+    public Integer getPrice() {
+        if (buy != null) {
+            return buy.getPrice();
+        }
+        if (rental != null) {
+            return rental.getPrice();
+        }
+        return null;
+    }
 }

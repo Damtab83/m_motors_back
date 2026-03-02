@@ -1,11 +1,11 @@
 package com.dam.mmotors.pojo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +18,17 @@ public class User {
 
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void setRole(Role role) {
+        this.role = Role.CUSTOMER;
+    }
+
+    @OneToMany(mappedBy = "car_id")
+    @JsonBackReference
+    private List<Car> myCars;
 
     public boolean isAdmin() {
         return role == Role.ADMIN;

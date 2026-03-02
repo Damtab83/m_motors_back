@@ -15,13 +15,19 @@ public class BuyCar {
     private Long buyCar_id;
 
     private Integer price;
+    public Integer getPrice() {
+        if(hasTradeIn() == true) {
+            price = price - takeOldCar.getPrice();
+        }
+        return price;
+    }
 
     @OneToOne(optional = true)
     @JoinColumn(name = "oldCar_id")
     @JsonManagedReference
     private OldCar takeOldCar;
 
-    public boolean hasTradeIn() {
+    public Boolean hasTradeIn() {
         return takeOldCar != null;
     }
 }
