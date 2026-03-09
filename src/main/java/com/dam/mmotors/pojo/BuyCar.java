@@ -16,8 +16,8 @@ public class BuyCar {
 
     private Integer price;
     public Integer getPrice() {
-        if(hasTradeIn() == true) {
-            price = price - takeOldCar.getPrice();
+        if(hasTradeIn()){
+            return price - takeOldCar.getPrice();
         }
         return price;
     }
