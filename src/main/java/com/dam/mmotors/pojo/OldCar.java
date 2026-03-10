@@ -17,8 +17,8 @@ public class OldCar {
     private String brand;
     private Integer price;
 
-    @OneToOne(mappedBy = "takeOldCar")
-    @JsonBackReference
-    private BuyCar buyCar;
+//    @OneToOne(mappedBy = "takeOldCar")
+//    @JsonBackReference
+//    private BuyCar buyCar;
 
 }

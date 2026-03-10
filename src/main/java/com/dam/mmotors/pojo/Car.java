@@ -22,26 +22,27 @@ public class Car {
     private String motorization;
     private Integer kilometer;
     private Boolean funding;
+    private Integer price;
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User customer;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "buyCar_id")
-    private BuyCar buy;
-
-    @OneToOne(optional = true)
-    @JoinColumn(name = "rentalCar")
-    private RentalCar rental;
-
-    public boolean isBuy() {
-        return buy != null;
-    }
-    public boolean isRental() {
-        return rental != null;
-    }
+//    @OneToOne(optional = true)
+//    @JoinColumn(name = "buyCar_id")
+//    private BuyCar buy;
+//
+//    @OneToOne(optional = true)
+//    @JoinColumn(name = "rentalCar")
+//    private RentalCar rental;
+//
+//    public boolean isBuy() {
+//        return buy != null;
+//    }
+//    public boolean isRental() {
+//        return rental != null;
+//    }
 
     @OneToMany
     @JoinColumn(name = "imageCar_id")
@@ -51,14 +52,14 @@ public class Car {
     @JoinColumn(name = "testDriving_id")
     private TestDriving testing;
 
-    @Transient
-    public Integer getPrice() {
-        if (buy != null) {
-            return buy.getPrice();
-        }
-        if (rental != null) {
-            return rental.getPrice();
-        }
-        return null;
-    }
+//    @Transient
+//    public Integer getPrice() {
+//        if (buy != null) {
+//            return buy.getPrice();
+//        }
+//        if (rental != null) {
+//            return rental.getPrice();
+//        }
+//        return null;
+//    }
 }

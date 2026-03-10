@@ -38,9 +38,10 @@ public class CarService {
             oldCar.setMotorization(newCar.getMotorization());
             oldCar.setKilometer(newCar.getKilometer());
             oldCar.setTesting(newCar.getTesting());
-            oldCar.setBuy(newCar.getBuy());
-            oldCar.setRental(newCar.getRental());
+//            oldCar.setBuy(newCar.getBuy());
+//            oldCar.setRental(newCar.getRental());
             oldCar.setFunding(newCar.getFunding());
+            oldCar.setPrice(newCar.getPrice());
         }
     }
 }

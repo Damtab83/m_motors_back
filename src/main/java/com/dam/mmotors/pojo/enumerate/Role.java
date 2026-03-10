@@ -1,4 +1,4 @@
-package com.dam.mmotors.pojo;
+package com.dam.mmotors.pojo.enumerate;
 
 public enum Role {
     ADMIN,

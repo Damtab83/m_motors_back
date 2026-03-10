@@ -1,5 +1,6 @@
 package com.dam.mmotors.pojo;
 
+import com.dam.mmotors.pojo.enumerate.Role;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
